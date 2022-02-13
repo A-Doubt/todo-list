@@ -1,0 +1,29 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "A web 'to-do list' application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-Doubt/todo-list.git"
+  },
+  "author": "Paweł Wiśniewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A-Doubt/todo-list/issues"
+  },
+  "homepage": "https://github.com/A-Doubt/todo-list#readme",
+  "devDependencies": {
+    "css-loader": "^6.6.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
