@@ -1,6 +1,6 @@
 import "./style.css";
-import { test2 } from "./test2";
+import { renderLists } from "./task-lists";
+import { lists } from "./task-lists";
 
-console.log('test from /src/index.js');
-console.log(test2)
-console.log('aaaaaaaaa');
+renderLists();
+
