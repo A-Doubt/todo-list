@@ -116,13 +116,34 @@ li {
 /* Actual list */
 .list-item {
     position: relative;
-    padding-left: 3rem;
     height: 4.4rem;
     border-bottom: 1px grey dotted;
     display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.checkbox {
+    background-color: cornflowerblue;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+.checkbox.task-completed {
+    position: relative;
+    background-color: yellowgreen;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+.checkbox.task-completed::after {
+    content: '✔️';
+    position: absolute;
+}
+.completed>*:not(button) {
+    text-decoration: line-through;
 }
 .list-item>p {
-    width: 60%;
+    width: 50%;
     font-size: 0.7rem;
     margin-left: 1.4rem;
 }
@@ -131,23 +152,25 @@ li {
     font-weight: 500;
 }
 .low-priority::before {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
     content: '';
-    border: 10px green solid;
+    border: 12px green solid;
+}
+.medium-priority::before {
+    content: '';
+    border: 12px orange solid;
 }
 .high-priority::before {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
     content: '';
-    border: 10px red solid;
+    border: 12px red solid;
 }
 .edit-task {
     margin-left: auto;
+    position: relative;
 }
 .edit-task,
 .remove-task {
     width: 80px;
+}
+.blue {
+    background-color: blue !important;
 }
