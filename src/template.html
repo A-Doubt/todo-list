@@ -5,12 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To-do List</title>
 </head>
-<body>
-    
-    
+<body class="preload">
+    <div class="add-task invisible">
+        <form class="add-task-form">
+            <button type="button" class="close-form" style="font-size: 3rem;">❌</button>
+            <h2>add a new task</h2>
+            <label for="task-title">Task name:</label>
+            <input type="text" id="task-name" placeholder="task-name" required autocomplete="off">
+            <label for="due-date">Due date:</label>
+            <input type="date">
+            <label for="select">Priority</label>
+            <select name="priority" id="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+            </select>
+            <label for="list">Choose list</label>
+            <select name="list" id="list">
+
+            </select>
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="25" rows="4" placeholder="description"></textarea>
+            <button type="submit" class="add-task-btn">ADD TASK</button>
+        </form>
+    </div>
+
     <section class="content">
         <header class="header">
             <h1 class="site-h1">To-do List</h1>
+            <button class="new-task-btn">➕</button>
         </header>
         <div class="sidebar">
             <div class="due-filter">
@@ -32,6 +55,18 @@
             </div>
         </div>
         <div class="todo-list">
+            <div class="list-item low-priority">
+                <h4>Test task 01,<p class="due-date"> due: 12.12.1222</p></h4>
+                <p>test description 01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. At necessitatibus doloribus explicabo unde reiciendis sequi consectetur. Dolores, illum ab? Odio.</p>
+                <button class="edit-task">Edit task</button>
+                <button class="remove-task">Remove task</button>
+            </div>
+            <div class="list-item high-priority">
+                <h4>Test task 02,<p class="due-date"> due: 12.12.1222</p></h4>
+                <p>Short description.</p>
+                <button class="edit-task">Edit task</button>
+                <button class="remove-task">Remove task</button>
+            </div>
         </div>
     </section>
 </body>

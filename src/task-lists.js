@@ -1,19 +1,18 @@
-
+import { populateListChoice } from "./new-task";
 // testing list
 const lists = [
     {
-        name: 'name2',
-        id: 23232
+        name: 'name-test-01',
+        id: 'id-test-01'
     },
     {
-        name: 'name1',
-        id: '111'
+        name: 'name-test-02',
+        id: 'id-test-02',
     }
 ]
 
 export function renderLists(e) {
     lists.forEach(listItem => {
-
         // appending new list
         const newListItem = document.createElement('li');
         newListItem.textContent = listItem.name;
@@ -25,6 +24,10 @@ export function renderLists(e) {
         
         const taskUl = document.querySelector('.task-lists>ul')
         taskUl.appendChild(newListItem);
+
+        // populate select element in UI used to add a new task
+        populateListChoice();
+        console.table(lists);
     });
 };
 

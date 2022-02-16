@@ -1,4 +1,22 @@
+body.preload *{
+    animation-duration: 0s !important;
+    -webkit-animation-duration: 0s !important;
+    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
+.blur {
+    transform: blur;
+    filter: blur(3px);
+    pointer-events: none;
+    user-select: none;
+}
+.invisible {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+}
+
 * {
+    color: black;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,8 +39,9 @@ li {
 }
 
 .content {
+    transition: all 0.3s;
     min-width: 60rem;
-    width: 80%;
+    width: 90%;
     min-height: 34rem;
     background-color: white;
     border: 1px solid blue;
@@ -33,10 +52,17 @@ li {
 .header {
     border: 1px solid black;
     grid-column: 1/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.header>button {
+    width: 100px;
+    height: 50%;
 }
 .site-h1 {
     font-size: 2rem;
-    margin-bottom: 1rem;
     text-align: center;
 }
 .due-filter,
@@ -68,7 +94,60 @@ li {
     border: 3px solid green;
     grid-template-columns: 2/3;
 }
-.blur {
-    filter: blur(3px);
-    pointer-events: none;
+
+
+/* NEW TASK FORM */
+.add-task {
+    scale: 1;
+    z-index: 1;
+    background-color: aquamarine;
+    width: 50%;
+    min-width: 500px;
+    height: 800px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+/* Actual list */
+.list-item {
+    position: relative;
+    padding-left: 3rem;
+    height: 4.4rem;
+    border-bottom: 1px grey dotted;
+    display: flex;
+}
+.list-item>p {
+    width: 60%;
+    font-size: 0.7rem;
+    margin-left: 1.4rem;
+}
+.due-date {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.low-priority::before {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    content: '';
+    border: 10px green solid;
+}
+.high-priority::before {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    content: '';
+    border: 10px red solid;
+}
+.edit-task {
+    margin-left: auto;
+}
+.edit-task,
+.remove-task {
+    width: 80px;
 }
