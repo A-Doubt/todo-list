@@ -14,6 +14,9 @@ body.preload *{
     opacity: 0;
     transform: scale(0);
 }
+.no-display {
+    display: none !important;
+}
 
 * {
     color: black;
@@ -113,7 +116,7 @@ li {
     transition: all 0.3s;
 }
 
-/* Actual list */
+/* Actual tasks */
 .list-item {
     position: relative;
     height: 4.4rem;
@@ -135,10 +138,15 @@ li {
     height: 24px;
     border-radius: 50%;
 }
-.checkbox.task-completed::after {
+.completed>.checkbox.task-completed::after {
     content: '✔️';
     position: absolute;
 }
+*:not(.completed)>.checkbox.task-completed::after {
+    content: '❌';
+    position: absolute;
+}
+
 .completed>*:not(button) {
     text-decoration: line-through;
 }
@@ -173,4 +181,12 @@ li {
 }
 .blue {
     background-color: blue !important;
+}
+
+/* Lists */
+ul .selected {
+    background-color: yellow;
+}
+.task-lists p {
+    width: 100%;
 }

@@ -1,7 +1,8 @@
 import "./style.css";
 import { renderLists } from "./task-lists";
-import lists from "./task-lists";
+import { lists } from "./task-lists";
 import { renderTasks } from "./todo-tasks";
+import { a } from "./filters";
 
 // remove onload animations
 setTimeout(function(){
@@ -9,4 +10,5 @@ setTimeout(function(){
 },500);
 
 renderLists();
+
 

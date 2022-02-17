@@ -2,25 +2,35 @@ import { populateListChoice } from "./new-task";
 // testing list
 const lists = [
     {
-        name: 'name-test-01',
-        id: 'id-test-01'
+        name: 'test-list-01',
+        id: 'list-id-test-01'
     },
     {
-        name: 'name-test-02',
-        id: 'id-test-02',
+        name: 'test-list-02',
+        id: 'list-id-test-02',
     }
 ]
 
+// function which renders all task lists
 export function renderLists(e) {
     lists.forEach(listItem => {
         // appending new list
         const newListItem = document.createElement('li');
-        newListItem.textContent = listItem.name;
+        const newListItemName = document.createElement('p');
+        newListItemName.classList.add('list-name');
+        newListItemName.textContent = listItem.name;
         const removeButton = document.createElement('button');
+        removeButton.textContent = 'remove';
+
+        // add an insivible list id to the DOM
+        const listId = document.createElement('p');
+        newListItem.appendChild(listId);
+        listId.textContent = listItem.id;
+        listId.classList.add('no-display');
+
         removeButton.addEventListener('click', removeList);
         removeButton.classList.add('remove-btn');
-        removeButton.textContent = 'remove';
-        newListItem.appendChild(removeButton);
+        newListItem.append(newListItemName, removeButton);
         
         const taskUl = document.querySelector('.task-lists>ul')
         taskUl.appendChild(newListItem);
@@ -29,11 +39,13 @@ export function renderLists(e) {
         populateListChoice();
         console.table(lists);
     });
+
 };
 
 
 // adding a listener to lists form and function to add a new list
 document.querySelector('.add-list-form').addEventListener('submit', addList);
+
 function addList(e) {
     e.preventDefault();
 
@@ -54,7 +66,6 @@ function addList(e) {
 }
 
 function removeList(e) {
-    e.preventDefault();
     console.log(this.parentNode.firstChild.textContent);
     let index = lists.findIndex(x => (x.name === this.parentNode.firstChild.textContent));
     lists.splice(index, 1);
@@ -69,4 +80,4 @@ function clearLists() {
     taskListUl.innerHTML = '';
 }
 
-export default lists;
+export { lists };

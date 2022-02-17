@@ -1,17 +1,4 @@
-{/* <div class="todo-list">
-    <div class="list-item low-priority">
-        <h4>Test task 01,<p class="due-date"> due: 12.12.1222</p></h4>
-        <p>test description 01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. At necessitatibus doloribus explicabo unde reiciendis sequi consectetur. Dolores, illum ab? Odio.</p>
-        <button class="edit-task">Edit task</button>
-        <button class="remove-task">Remove task</button>
-    </div>
-    <div class="list-item high-priority">
-        <h4>Test task 02,<p class="due-date"> due: 12.12.1222</p></h4>
-        <p>Short description.</p>
-        <button class="edit-task">Edit task</button>
-        <button class="remove-task">Remove task</button>
-    </div>
-</div> */}
+import { selectedListId } from "./filters";
 
 const tasks = [
     {
@@ -21,7 +8,7 @@ const tasks = [
         listId: 'test111',
         taskId: 'id001',
         description: 'Lorem ipsum blah blah blah',
-        completed: false,
+        completed: true,
     },
     {
         title: 'task-test-002',
@@ -42,9 +29,9 @@ export function renderTasks() {
     tasks.forEach(task => {
         todoList.insertAdjacentHTML('beforeend', 
         `<div class="list-item ${task.priority} completed">
-            <p style="display: none">${task.taskId}</p>
+            <p class="no-display">${task.taskId}</p>
             <div class="checkbox task-completed"></div>
-            <h4>Test task 01,<p class="due-date"> due: ${task.due}</p></h4>
+            <h4>${task.title}<p class="due-date"> due: ${task.due}</p></h4>
             <p>${task.description}</p>
             <button class="edit-task">Edit task</button>
             <button class="remove-task">Remove task</button>
@@ -72,13 +59,14 @@ export function renderTasks() {
 renderTasks();
 
 // clear all tasks from the list
-function clearTasks() {
+export function clearTasks() {
     const todos = document.querySelector('.todo-list');
     todos.innerHTML = '';
 };
 
 function editTask(e) {
     console.log(e.target);
+    console.log(`selectedList: ${selectedListId}`);
 };
 
 function removeTask() {
@@ -111,3 +99,5 @@ function markComplete(e) {
 function markNotComplete(e) {
     console.log('from markNotComplete');
 }
+
+export { tasks };
