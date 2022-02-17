@@ -3,27 +3,19 @@ import { selectList } from "./filters";
 // testing list
 const lists = [
     {
-        name: 'test-list-01',
-        id: 'list-id-test-01'
-    },
-    {
-        name: 'test-list-02',
-        id: 'list-id-test-02',
-    },
-    {
-        name: 'a',
+        name: '111',
         id: 111111111111111
     },
     {
-        name: 'a',
+        name: '222',
         id: 222222222222222
     },
     {
-        name: 'a',
+        name: '333',
         id: 333333333333333
     },
     {
-        name: 'a',
+        name: '444',
         id: 444444444444444
     }
 ]
@@ -97,7 +89,10 @@ function removeList(e) {
 
 function clearLists() {
     const taskListUl = document.querySelector('.task-list-ul');
-    taskListUl.innerHTML = '';
+    taskListUl.innerHTML = 
+    `<li>
+    <p class="no-filter">ALL TASKS</p>
+    </li>`;
 }
 
 export { lists };

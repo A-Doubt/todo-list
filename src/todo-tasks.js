@@ -1,25 +1,63 @@
 import { selectedListId } from "./filters";
-
+import { filterTasks } from "./filters";
 const tasks = [
     {
-        title: 'task-test-001',
+        title: 'nolister',
         due: new Date(2022, 2, 17).toLocaleDateString('en-GB'),
         priority: 'medium-priority',
-        listId: 'test111',
+        listId: '',
         taskId: 'id001',
         description: 'Lorem ipsum blah blah blah',
         completed: true,
     },
     {
-        title: 'task-test-002',
+        title: '333.1',
         due: new Date(2022, 5, 12).toLocaleDateString('en-GB'),
         priority: 'high-priority',
-        listId: 'test222',
-        taskId: 'id002',
+        listId: 333333333333333,
+        taskId: 'id003',
+        description: 'Lorem ipsum yadda yadda yadda',
+        completed: true,
+    },
+    {
+        title: '333.2',
+        due: new Date(2022, 5, 12).toLocaleDateString('en-GB'),
+        priority: 'high-priority',
+        listId: 333333333333333,
+        taskId: 'id004',
+        description: 'Lorem ipsum yadda yadda yadda',
+        completed: true,
+    },
+    {
+        title: '111.1',
+        due: new Date(2022, 5, 12).toLocaleDateString('en-GB'),
+        priority: 'high-priority',
+        listId: 111111111111111,
+        taskId: 'id005',
+        description: 'Lorem ipsum yadda yadda yadda',
+        completed: true,
+    },
+    {
+        title: '111.2',
+        due: new Date(2022, 5, 12).toLocaleDateString('en-GB'),
+        priority: 'high-priority',
+        listId: 111111111111111,
+        taskId: 'id006',
+        description: 'Lorem ipsum yadda yadda yadda',
+        completed: true,
+    },
+    {
+        title: '222.1',
+        due: new Date(2022, 5, 12).toLocaleDateString('en-GB'),
+        priority: 'low-priority',
+        listId: 222222222222222,
+        taskId: 'id007',
         description: 'Lorem ipsum yadda yadda yadda',
         completed: true,
     }
 ]
+
+
 
 
 export function renderTasks() {
@@ -30,6 +68,7 @@ export function renderTasks() {
         todoList.insertAdjacentHTML('beforeend', 
         `<div class="list-item ${task.priority} completed">
             <p class="no-display">${task.taskId}</p>
+            <p class="no-display">${task.listId}</p>
             <div class="checkbox task-completed"></div>
             <h4>${task.title}<p class="due-date"> due: ${task.due}</p></h4>
             <p>${task.description}</p>
@@ -76,25 +115,14 @@ function removeTask() {
 
     // clear and render
     renderTasks();
+    filterTasks();
 };
 
-const checkbox = document.querySelector('.checkbox');
-
 function toggleComplete(e) {
-    // find according task and set the 'completed' key in tasks array to true or false
-    let index = tasks.findIndex(task => (task.taskId === this.parentNode.firstElementChild.textContent));
+    // find according task and set the 'completed' key in tasks array to false or true
+    let index = tasks.findIndex(task => task.taskId == this.parentNode.firstElementChild.textContent);
     tasks[index].completed ? tasks[index].completed = false : tasks[index].completed = true;
-    console.table(tasks);
-
     renderTasks();
-}
-
-function markComplete(e) {
-    console.log('from markComplete');
-    console.log('from markComplete');
-}
-function markNotComplete(e) {
-    console.log('from markNotComplete');
 }
 
 export { tasks };

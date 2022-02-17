@@ -21,6 +21,7 @@ export function populateListChoice() {
     lists.forEach(listItem => {
         let option = document.createElement('option');
         option.textContent = listItem.name;
+        option.value = listItem.id;
         listChoice.appendChild(option);
     });
 };
