@@ -46,11 +46,9 @@ export function renderTasks() {
         // add or remove 'completed' class from each todo-item
         const listItem = document.querySelectorAll('.list-item');
         if (task.completed) {
-            console.log(`if: ${task.completed}`);
             listItem[counter].classList.add('completed');
         }
         else {
-            console.log(`else: ${task.completed}`);
             listItem[counter].classList.remove('completed');
         }
         counter++;
@@ -81,7 +79,6 @@ function removeTask() {
 };
 
 const checkbox = document.querySelector('.checkbox');
-console.log(checkbox);
 
 function toggleComplete(e) {
     // find according task and set the 'completed' key in tasks array to true or false

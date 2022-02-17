@@ -1,4 +1,5 @@
 import { populateListChoice } from "./new-task";
+import { selectList } from "./filters";
 // testing list
 const lists = [
     {
@@ -8,6 +9,22 @@ const lists = [
     {
         name: 'test-list-02',
         id: 'list-id-test-02',
+    },
+    {
+        name: 'a',
+        id: 111111111111111
+    },
+    {
+        name: 'a',
+        id: 222222222222222
+    },
+    {
+        name: 'a',
+        id: 333333333333333
+    },
+    {
+        name: 'a',
+        id: 444444444444444
     }
 ]
 
@@ -37,11 +54,9 @@ export function renderLists(e) {
 
         // populate select element in UI used to add a new task
         populateListChoice();
-        console.table(lists);
     });
 
 };
-
 
 // adding a listener to lists form and function to add a new list
 document.querySelector('.add-list-form').addEventListener('submit', addList);
@@ -60,19 +75,24 @@ function addList(e) {
         );
     listInput.value = '';
 
+
     // clear and render
     clearLists();
     renderLists();
+
+    selectList(e);
 }
 
 function removeList(e) {
-    console.log(this.parentNode.firstChild.textContent);
-    let index = lists.findIndex(x => (x.name === this.parentNode.firstChild.textContent));
+    let index = lists.findIndex(x => x.id == this.parentNode.firstChild.textContent);
     lists.splice(index, 1);
 
     // clear and render
     clearLists();
     renderLists();
+
+    // and select an active list
+    selectList(e);
 }
 
 function clearLists() {
