@@ -1,5 +1,9 @@
 import { populateListChoice } from "./new-task";
-import { selectList } from "./filters";
+import { selectList  } from "./filters";
+import { selectDate } from "./filters";
+import { clearTasks, renderTasks } from "./todo-tasks";
+import { tasks } from "./todo-tasks";
+
 // testing list
 const lists = [
     {
@@ -22,26 +26,31 @@ const lists = [
 
 // function which renders all task lists
 export function renderLists(e) {
+    const taskUl = document.querySelector('.task-lists>ul')
+
+    // this below goes crazy if split between lines...
+    taskUl.innerHTML =
+    `<li class="selected"><p class="no-display">none</p><p class="no-filter">ALL TASKS</p></li>`
+
     lists.forEach(listItem => {
-        // appending new list
         const newListItem = document.createElement('li');
-        const newListItemName = document.createElement('p');
-        newListItemName.classList.add('list-name');
-        newListItemName.textContent = listItem.name;
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'remove';
 
         // add an insivible list id to the DOM
         const listId = document.createElement('p');
-        newListItem.appendChild(listId);
-        listId.textContent = listItem.id;
         listId.classList.add('no-display');
+        listId.textContent = listItem.id;
 
-        removeButton.addEventListener('click', removeList);
+        const newListItemName = document.createElement('p');
+        newListItemName.classList.add('list-name');
+        newListItemName.textContent = listItem.name;
+
+        const removeButton = document.createElement('button');
         removeButton.classList.add('remove-btn');
-        newListItem.append(newListItemName, removeButton);
+        removeButton.addEventListener('click', removeList);
+        removeButton.textContent = 'remove';
+
+        newListItem.append(listId, newListItemName, removeButton);
         
-        const taskUl = document.querySelector('.task-lists>ul')
         taskUl.appendChild(newListItem);
 
         // populate select element in UI used to add a new task
@@ -65,6 +74,7 @@ function addList(e) {
         id: new Date().getTime(),
         }
         );
+
     listInput.value = '';
 
 
@@ -72,7 +82,7 @@ function addList(e) {
     clearLists();
     renderLists();
 
-    selectList(e);
+    selectList();
 }
 
 function removeList(e) {
@@ -85,14 +95,33 @@ function removeList(e) {
 
     // and select an active list
     selectList(e);
+
+    // and remove all tasks that were a part of this list
+    removeMatchingTasks(e);
 }
 
 function clearLists() {
     const taskListUl = document.querySelector('.task-list-ul');
     taskListUl.innerHTML = 
-    `<li>
+    `<li class="selected">
+    <p class="no-display"></p>
     <p class="no-filter">ALL TASKS</p>
     </li>`;
 }
+
+
+// removes all tasks that were a part of a list that's being deleted and renders tasks again
+function removeMatchingTasks(e) {
+    const removedListId = e.target.parentNode.firstChild.textContent;
+    for(let i = tasks.length - 1; i >= 0; i--) {
+
+        if(tasks[i].listId == removedListId) {
+           tasks.splice(i, 1);
+        }
+    }
+    clearTasks();
+    renderTasks();
+}
+
 
 export { lists };

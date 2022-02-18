@@ -187,6 +187,7 @@ li {
 ul .selected {
     background-color: yellow;
 }
-.task-lists p {
+.task-lists p,
+.due-filter p {
     width: 100%;
 }

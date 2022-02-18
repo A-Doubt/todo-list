@@ -2,6 +2,11 @@ import { lists } from "./task-lists";
 import { tasks } from "./todo-tasks";
 import { clearTasks } from "./todo-tasks";
 import { renderTasks } from "./todo-tasks";
+import { selectList } from "./filters";
+import { selectDate } from "./filters";
+import { filter } from "./filters";
+import { filterByDate } from "./filters";
+import { filterByList } from "./filters";
 
 // functions to draw the form to add a new task and to remove the form
 document.querySelector('.new-task-btn').addEventListener('click', newTask);
@@ -17,7 +22,7 @@ function closeNewTask() {
 
 export function populateListChoice() {
     const listChoice = document.querySelector('#list');
-    listChoice.innerHTML = '';
+    listChoice.innerHTML = '<option value="">No list</option>';
     lists.forEach(listItem => {
         let option = document.createElement('option');
         option.textContent = listItem.name;
@@ -37,16 +42,10 @@ function addNewTask(e) {
     const taskId = new Date().getTime();
     const description = document.querySelector('#description');
 
-    console.log(title);
-    console.log(due);
-    console.log(priority);
-    console.log(listId);
-    console.log(taskId);
-    console.log(description);
 
     tasks.push({
         title: title.value,
-        due: due.value,
+        due: new Date(due.valueAsNumber),
         priority: priority.value,
         listId: listId.value,
         taskId: taskId,
@@ -65,4 +64,6 @@ function addNewTask(e) {
 
     clearTasks();
     renderTasks();
+    selectList(e);
+    selectDate(e)
 }
