@@ -13,7 +13,7 @@ function newTask() {
     document.querySelector('.content').classList.add('blur');
     document.querySelector('.add-task').classList.remove('invisible');
 }
-document.querySelector('.close-form').addEventListener('click', closeNewTask);
+document.querySelector('#close-add').addEventListener('click', closeNewTask);
 function closeNewTask() {
     document.querySelector('.content').classList.remove('blur');
     document.querySelector('.add-task').classList.add('invisible');

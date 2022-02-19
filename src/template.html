@@ -6,11 +6,19 @@
     <title>To-do List</title>
 </head>
 <body class="preload">
+
+    <!-- <div class="remove-list invisible">
+        <button class="close-list-deletion-btn" style="font-size: 3rem;">❌</button>
+        <h2>Are you sure you want to remove this list and all tasks belonging to this list?</h2>
+        <button class="remove-list-confirm-btn">REMOVE LIST</button>
+    </div> -->
+
+
     <div class="add-task invisible">
         <form class="add-task-form">
-            <button type="button" class="close-form" style="font-size: 3rem;">❌</button>
+            <button type="button" class="close-form" id="close-add" style="font-size: 3rem;">❌</button>
             <h2>add a new task</h2>
-            <label for="task-title">Task name:</label>
+            <label for="task-name">Task name:</label>
             <input type="text" id="task-name" placeholder="task-name" required autocomplete="off">
             <label for="due-date">Due date:</label>
             <input type="date" id="due-date">

@@ -55,10 +55,10 @@ export function renderLists(e) {
         taskUl.appendChild(newListItem);
 
         // populate select element in UI used to add a new task
-        console.log('beforePLC');
         populateListChoice();
     });
     saveToStorage();
+
 };
 
 // adding a listener to lists form and function to add a new list
@@ -79,30 +79,36 @@ function addList(e) {
 
     listInput.value = '';
 
-
     // clear and render
     clearLists();
     renderLists();
-
     selectList();
 }
 
-function removeList(e) {
-    let index = lists.findIndex(x => x.id == this.parentNode.firstChild.textContent);
-    lists.splice(index, 1);
 
+let index = null;
+let removedListId = null;
+let actuallyDeleted = false;
+
+function removeList(e) {
+
+    if (!confirm('Are you sure you want to remove the list and all tasks belonging to this list?')) return;
+    actuallyDeleted = true;
+
+    index = lists.findIndex(x => x.id == this.parentNode.firstChild.textContent);
+    lists.splice(index, 1);
     // clear and render
     clearLists();
     renderLists();
     // and select an active list
     selectList(e);
 
-
     // and remove all tasks that were a part of this list
     removeMatchingTasks(e);
 
     // and update list choces in the form to add a new task
     populateListChoice();
+    actuallyDeleted = false;
 }
 
 function clearLists() {
@@ -117,7 +123,8 @@ function clearLists() {
 
 // removes all tasks that were a part of a list that's being deleted and renders tasks again
 function removeMatchingTasks(e) {
-    const removedListId = e.target.parentNode.firstChild.textContent;
+
+    console.log(`index: ${index}`);
     for(let i = tasks.length - 1; i >= 0; i--) {
 
         if(tasks[i].listId == removedListId) {
@@ -128,5 +135,5 @@ function removeMatchingTasks(e) {
     renderTasks();
 }
 
-
 // export { lists };
+export { actuallyDeleted };

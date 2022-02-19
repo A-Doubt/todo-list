@@ -103,7 +103,6 @@ let lists = [
 
 
 export function saveToStorage() {
-    console.log(`tasks: ${tasks}`);
     tasks.forEach(task => {
         task.due = task.due.toString();
     })
@@ -120,9 +119,7 @@ window.onload = function() {
     listsFromStorage = JSON.parse(localStorage.getItem('lists', lists));
     tasksFromStorage = JSON.parse(localStorage.getItem('tasks', tasks));
 
-    console.log(tasksFromStorage);
     if (tasksFromStorage[0]) {
-        console.log('here');
         tasksFromStorage.forEach(task => {
             task.due = new Date(task.due);
         })

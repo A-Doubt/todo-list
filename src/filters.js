@@ -1,8 +1,7 @@
-
+import { actuallyDeleted } from "./task-lists";
 // let selectedListId = null;
 let selectedListFilter = 'none';
 let selectedDueFilter = 'none';
-
 // listener to task lists
 document.querySelector('.task-list-ul').addEventListener('click', selectList);
 document.querySelector('.due-filter-ul').addEventListener('click', selectDate);
@@ -20,7 +19,7 @@ export function selectList(e) {
     }
     if (e instanceof PointerEvent) {
         // if function called by removing a list
-        if (e.target.classList.contains('remove-btn')) {
+        if (e.target.classList.contains('remove-btn') && actuallyDeleted) {
             // if deleting a selected list, set it to none and return
             if (e.target.parentNode.firstChild.textContent === selectedListFilter) {
                 document.querySelector('.no-filter').parentNode.classList.add('selected');
@@ -44,7 +43,6 @@ export function selectList(e) {
             selectedListFilter = 'none';
             e.target.parentNode.classList.add('selected');
 
-            // fixed?
             if (e.target.parentNode.parentNode.childNodes[1]) li.classList.remove('selected');
 
         })
