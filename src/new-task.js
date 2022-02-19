@@ -1,12 +1,11 @@
-import { lists } from "./task-lists";
-import { tasks } from "./todo-tasks";
-import { clearTasks } from "./todo-tasks";
-import { renderTasks } from "./todo-tasks";
-import { selectList } from "./filters";
-import { selectDate } from "./filters";
-import { filter } from "./filters";
-import { filterByDate } from "./filters";
-import { filterByList } from "./filters";
+// import { lists } from "./task-lists";
+import { clearTasks, renderTasks } from "./todo-tasks";
+import { tasks } from "./localStorage";
+import { selectList, selectDate } from "./filters";
+import { lists } from "./localStorage";
+// import { filter } from "./filters";
+// import { filterByDate } from "./filters";
+// import { filterByList } from "./filters";
 
 // functions to draw the form to add a new task and to remove the form
 document.querySelector('.new-task-btn').addEventListener('click', newTask);
@@ -23,6 +22,7 @@ function closeNewTask() {
 export function populateListChoice() {
     const listChoice = document.querySelector('#list');
     listChoice.innerHTML = '<option value="">No list</option>';
+
     lists.forEach(listItem => {
         let option = document.createElement('option');
         option.textContent = listItem.name;

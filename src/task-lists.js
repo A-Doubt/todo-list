@@ -2,27 +2,28 @@ import { populateListChoice } from "./new-task";
 import { selectList  } from "./filters";
 import { selectDate } from "./filters";
 import { clearTasks, renderTasks } from "./todo-tasks";
-import { tasks } from "./todo-tasks";
+import { tasks } from "./localStorage";
+import { lists } from "./localStorage";
+import { saveToStorage } from "./localStorage";
 
-// testing list
-const lists = [
-    {
-        name: '111',
-        id: 111111111111111
-    },
-    {
-        name: '222',
-        id: 222222222222222
-    },
-    {
-        name: '333',
-        id: 333333333333333
-    },
-    {
-        name: '444',
-        id: 444444444444444
-    }
-]
+// let lists = [
+//     {
+//         name: '111',
+//         id: 111111111111111
+//     },
+//     {
+//         name: '222',
+//         id: 222222222222222
+//     },
+//     {
+//         name: '333',
+//         id: 333333333333333
+//     },
+//     {
+//         name: '444',
+//         id: 444444444444444
+//     }
+// ]
 
 // function which renders all task lists
 export function renderLists(e) {
@@ -54,9 +55,10 @@ export function renderLists(e) {
         taskUl.appendChild(newListItem);
 
         // populate select element in UI used to add a new task
+        console.log('beforePLC');
         populateListChoice();
     });
-
+    saveToStorage();
 };
 
 // adding a listener to lists form and function to add a new list
@@ -92,12 +94,15 @@ function removeList(e) {
     // clear and render
     clearLists();
     renderLists();
-
     // and select an active list
     selectList(e);
 
+
     // and remove all tasks that were a part of this list
     removeMatchingTasks(e);
+
+    // and update list choces in the form to add a new task
+    populateListChoice();
 }
 
 function clearLists() {
@@ -124,4 +129,4 @@ function removeMatchingTasks(e) {
 }
 
 
-export { lists };
+// export { lists };

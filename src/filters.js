@@ -10,9 +10,7 @@ document.querySelector('.due-filter-ul').addEventListener('click', selectDate);
 export function selectList(e) {
     const listLiElement = document.querySelectorAll('.task-list-ul>li');
     // if function called from a pointerEvent
-    console.log('1');
     if (!(e instanceof PointerEvent)) {
-        console.log('2');
         listLiElement.forEach(li => {
             li.classList.remove('selected');
 
@@ -20,27 +18,20 @@ export function selectList(e) {
         })
         return;
     }
-    console.log('3');
     if (e instanceof PointerEvent) {
-        console.log('4');
         // if function called by removing a list
         if (e.target.classList.contains('remove-btn')) {
-            console.log('5');
             // if deleting a selected list, set it to none and return
             if (e.target.parentNode.firstChild.textContent === selectedListFilter) {
-                console.log('6');
                 document.querySelector('.no-filter').parentNode.classList.add('selected');
                 selectedListFilter = 'none';
                 return;
             }
         }
     }
-    console.log('7');
     // check if the function is triggered when click on a list
     if (e.target.classList.contains('list-name')) {
-        console.log('8');
         // remove 'selected' class from all elements
-        console.log(listLiElement);
         listLiElement.forEach(li => {
             li.classList.remove('selected');
         })
@@ -49,16 +40,17 @@ export function selectList(e) {
         selectedListFilter = e.target.previousSibling.textContent;
     }
     else if (e.target.classList.contains('no-filter')) {
-        console.log('9');
         listLiElement.forEach(li => {
-            e.target.parentNode.classList.add('selected');
-            li.classList.remove('selected');
             selectedListFilter = 'none';
+            e.target.parentNode.classList.add('selected');
+
+            // fixed?
+            if (e.target.parentNode.parentNode.childNodes[1]) li.classList.remove('selected');
+
         })
     }
     // if this function is triggered from a different function, we want to preserve selection
     else {
-        console.log('10');
         listLiElement.forEach(li => {
             li.classList.remove('selected');
             if (selectedListFilter === li.firstChild.textContent) {
@@ -66,11 +58,9 @@ export function selectList(e) {
             }
         })
     }
-    console.log('11');
     // if no list selected
     if (!selectedListFilter) document.querySelector('.no-filter').parentNode.classList.add('selected');
 
-    console.log('12');
     filter();
 }
 
@@ -169,9 +159,11 @@ export function filterByDate(){
 };
             
 export function filterByList() {
-    selectedListFilter = document.querySelector('.task-list-ul>.selected').firstChild.textContent;
-    console.log(`list filter: ${selectedListFilter}`);
+    // selectedListFilter = document.querySelector('.task-list-ul>.selected').firstChild.textContent;
 
+    selectedListFilter = document.querySelector('.task-list-ul>.selected').childNodes[0].textContent;
+
+    console.log(`list filter: ${selectedListFilter}`);
     const todoTasks = document.querySelectorAll('.list-item');
 
     todoTasks.forEach(task => {
