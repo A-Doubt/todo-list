@@ -10,18 +10,21 @@ export function renderTasks() {
     const todoList = document.querySelector('.todo-list');
     let counter = 0;
     tasks.forEach(task => {
-        todoList.insertAdjacentHTML('beforeend', 
+        let taskDue = task.due.toLocaleDateString('en-GB');
+        // if 'due: invalid date' we don't want to display it.
+        if (taskDue == 'Invalid Date') taskDue = '';
 
+        todoList.insertAdjacentHTML('beforeend', 
         //             <button class="edit-task-btn">Edit task</button>
         `<div class="list-item ${task.priority} completed">
             <p class="no-display">${task.taskId}</p>
             <p class="no-display">${task.listId}</p>
             <p class="no-display">${task.due}</p>
             <div class="checkbox task-completed"></div>
-            <h4>${task.title}<p class="due-date"> due: ${task.due.toLocaleDateString('en-GB')}</p></h4>
+            <h4>${task.title}<p class="due-date"> due: ${taskDue}</p></h4>
             <p>${task.description}</p>
 
-            <button class="remove-task-btn">Remove task</button>
+            <button class="remove-task-btn"></button>
         </div>`);
         const checkbox = document.querySelectorAll('.checkbox');
         // const editTaskButton = document.querySelectorAll('.edit-task-btn');

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 body.preload *{
     animation-duration: 0s !important;
     -webkit-animation-duration: 0s !important;
-    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+    transition: background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
 }
 .blur {
     transform: blur;
@@ -23,49 +25,77 @@ body.preload *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.1rem;
     list-style: none;
+    --blue1: #4299e1;
+    --blue2: #2b6cb0;
 }
 
 body {
-    background-color: lightblue;
-    padding: 5rem 10rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
+
+    background: radial-gradient(
+    ellipse at center, 
+    rgb(31, 78, 150) 0%, 
+    rgba(0,0,0,1) 100%
+    )
+}
+body:after {
+    z-index: -3;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+    repeating-linear-gradient(
+    45deg, transparent,
+    transparent 1px, 
+    rgba(0, 0, 0, 0.8) 10px, 
+    rgba(255,255,255, 1) 0px
+    );
+}   
+h3 {
+    border-bottom: 2px dotted black;
+}
+body>div {
+    padding: 6vh 10vw;
 }
 
 li {
     display: flex;
     justify-content: space-between;
 }
+label {
+    transition: all 300ms;
+}
 
 .content {
     transition: all 0.3s;
     min-width: 60rem;
-    width: 90%;
+    width: 80vw;
     min-height: 34rem;
     background-color: white;
-    border: 1px solid blue;
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 60px 4fr;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 80px 4fr;
 }
 .header {
-    border: 1px solid black;
     grid-column: 1/3;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 80px;
+    background-color: #b2cee7;
 }
-.header>button {
-    width: 100px;
-    height: 50%;
-}
+
 .site-h1 {
-    font-size: 2rem;
+    font-family: 'Syne Tactile', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
     text-align: center;
 }
 .due-filter,
@@ -73,7 +103,6 @@ li {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
-    border: 1px solid black;
 }
 .add-list {
     margin-top: auto;
@@ -82,20 +111,55 @@ li {
     margin-bottom: auto;
     display: flex;
     gap: 0.8rem;
+    position: relative;
 }
-.add-list-form>input {
+.add-list-input {
     width: 150px;
+    border: 2px solid transparent;
+    border-bottom: 3px solid var(--blue1);
+    background: transparent;
+    color: rgb(255, 217, 2);
+    position: relative;
 }
+
+.add-list-input:focus+label,
+input:not(:placeholder-shown)+label {
+    transform: scale(0.8) translateY(-2.2rem);
+}
+
+.add-list-form label {
+    position: absolute;
+    left: 80px;
+    color: rgb(255, 217, 2);
+    text-align: end;
+}
+.add-list-input:focus {
+    outline: none;
+}
+
+
 .sidebar {
+    padding: 1rem;
     grid-row: 2/3;
     display: flex;
     flex-direction: column;
-    background-color: lightgrey;
+    gap: 20px;
+    background-color: #667292;
+}
+.sidebar p {
+    color: #111111;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
 }
 .todo-list {
     color: white;
-    border: 3px solid green;
     grid-template-columns: 2/3;
+    background-color: rgb(210, 230, 247);
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23d2ad56' fill-opacity='0.15'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+
 }
 
 
@@ -116,40 +180,49 @@ li {
     transition: all 0.3s;
 }
 
+.add-task-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+}
+.form-header {
+    display: flex;
+}
+
 /* Actual tasks */
+
 .list-item {
+    padding-left: 2rem;
     position: relative;
     height: 4.4rem;
     border-bottom: 1px grey dotted;
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 1.2rem;
 }
 .checkbox {
-    background-color: cornflowerblue;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
 }
 .checkbox.task-completed {
     position: relative;
-    background-color: yellowgreen;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
 }
 .completed>.checkbox.task-completed::after {
     content: '✔️';
+    font-size: 1.1rem;
     position: absolute;
-}
-*:not(.completed)>.checkbox.task-completed::after {
-    content: '❌';
-    position: absolute;
+    top: -2px;
+    left: -1px;
 }
 
-.completed>*:not(button) {
+.completed *:not(button) {
     text-decoration: line-through;
+    color: rgb(141, 141, 141);
 }
+
 .list-item>p {
     width: 50%;
     font-size: 0.7rem;
@@ -161,32 +234,28 @@ li {
 }
 .low-priority::before {
     content: '';
-    border: 12px green solid;
+    height: 90%;
+    width: 10px;
+    background-color: green;
 }
 .medium-priority::before {
     content: '';
-    border: 12px orange solid;
+    height: 90%;
+    width: 10px;
+    background-color: orange;
 }
 .high-priority::before {
     content: '';
-    border: 12px red solid;
-}
-.edit-task-btn {
-    margin-left: auto;
-    position: relative;
-}
-.edit-task-btn,
-.remove-task-btn {
-    width: 80px;
-}
-.blue {
-    background-color: blue !important;
+    height: 90%;
+    width: 10px;
+    background-color: red;
 }
 
 /* Lists */
-ul .selected {
-    background-color: yellow;
+ul .selected>p {
+    color: rgb(255, 217, 2);
 }
+
 .task-lists p,
 .due-filter p {
     width: 100%;
@@ -207,5 +276,75 @@ ul .selected {
     right: 0;
     text-align: center;
     transition: all 0.3s;
+}
+
+/* BUTTONS */
+.new-task-btn {
+    position: relative;
+    width: 200px;
+    text-align: right;
+    padding: 8px 30px 8px 0px;
+    font-size: 16px;
+}
+.new-task-btn>span {
+    position: absolute;
+    left: 40px;
+    top: 7px;
+    font-size: 2rem;
+    margin-right: 10px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+}
+
+.blue-btn {
+    border: 0;
+    cursor: pointer;
+    background-color: var(--blue1);
+    border-radius: 8px;
+    border-bottom: 4px solid var(--blue2);
+    font-weight: 700;
+    color: white;
+    line-height: 26px;
+    transition: all 300ms;
+}
+.blue-btn:hover {
+    background-color: var(--blue2);
+}
+
+.add-list-btn {
+    font-size: 26px;
+    width: 50px;
+    height: 34px;
+}
+.add-list-btn:hover {
+    transform: scale(1.1);
+}
+
+.remove-btn,
+.remove-task-btn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 10px;
+    border: 0;
+    background: transparent;
+
+	background-image: url("data:image/svg+xml,%3Csvg fill='%23000000' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30px' height='30px'%3E%3Cpath d='M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z'/%3E%3C/svg%3E");
+}
+
+.remove-task-btn {
+    transform: scale(1.5);
+}
+.remove-btn {
+    transform: scale(0.9);
+}
+.form-header .close-form-btn{
+    font-size: 3rem;
+    margin-left: auto;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
 }
 

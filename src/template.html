@@ -14,87 +14,91 @@
     </div> -->
 
 
-    <div class="add-task invisible">
-        <form class="add-task-form">
-            <button type="button" class="close-form" id="close-add" style="font-size: 3rem;">❌</button>
-            <h2>add a new task</h2>
-            <label for="task-name">Task name:</label>
-            <input type="text" id="task-name" placeholder="task-name" required autocomplete="off">
-            <label for="due-date">Due date:</label>
-            <input type="date" id="due-date">
-            <label for="select">Priority</label>
-            <select name="priority" id="priority">
-                <option value="low-priority">Low</option>
-                <option value="medium-priority">medium-</option>
-                <option value="high-priority">High</option>
-            </select>
-            <label for="list">Choose list</label>
-            <select name="list" id="list">
-
-            </select>
-            <label for="description">Description</label>
-            <textarea name="description" id="description" cols="25" rows="4" placeholder="description"></textarea>
-            <button type="submit" class="add-task-btn">ADD TASK</button>
-        </form>
+    <div>
+        <div class="add-task ">
+            <form class="add-task-form">
+                <div class="form-header">
+                    <h2>add a new task</h2>
+                    <button type="button" class="close-form-btn" id="close-add">❌</button>
+                </div>
+                <label for="task-name">Task name:</label>
+                <input type="text" id="task-name" placeholder="task-name" required autocomplete="off">
+                <label for="due-date">Due date:</label>
+                <input type="date" id="due-date">
+                <label for="select">Priority</label>
+                <select name="priority" id="priority">
+                    <option value="low-priority">Low</option>
+                    <option value="medium-priority">medium-</option>
+                    <option value="high-priority">High</option>
+                </select>
+                <label for="list">Choose list</label>
+                <select name="list" id="list">
+                </select>
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="25" rows="4" placeholder="description"></textarea>
+                <button type="submit" class="add-task-btn">ADD TASK</button>
+            </form>
+        </div>
+        <section class="content">
+            <header class="header">
+                <h1 class="site-h1">To-do List</h1>
+                <button class="new-task-btn blue-btn"><span>+</span>NEW TASK</button>
+            </header>
+            <div class="sidebar">
+                <div class="due-filter">
+                    <h3>Due date</h3>
+                    <ul class="due-filter-ul">
+                        <li class="selected">
+                            <p class="no-display">none</p>
+                            <p class="date-name">No filter</p>
+                        </li>
+                        <li>
+                            <p class="no-display">day</p>
+                            <p class="date-name">Today</p>
+                        </li>
+                        <li>
+                            <p class="no-display">week</p>
+                            <p class="date-name">Week</p>
+                        </li>
+                        <li>
+                            <p class="no-display">month</p>
+                            <p class="date-name">Month</p>
+                        </li>
+                </div>
+                <div class="task-lists">
+                    <h3>Task lists</h3>
+                    <ul class="task-list-ul">
+                        <li class="selected">
+                            <p class="no-display">none</p>
+                            <p class="no-filter">ALL TASKS</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="add-list">
+                    <form class="add-list-form">
+                        <button type="submit" class="add-list-btn blue-btn">+</button>
+                        <input type="text" class="add-list-input" placeholder=" " id="add-list-input">
+                        <label for="add-list-input">Add a list . . .</label>
+                    </form>
+                </div>
+            </div>
+            <div class="todo-list">
+                <!-- <div class="list-item low-priority">
+                    <h4>Test task 01,<p class="due-date"> due: 12.12.1222</p></h4>
+                    <p>test description 01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. At necessitatibus doloribus explicabo unde reiciendis sequi consectetur. Dolores, illum ab? Odio.</p>
+                    <button class="edit-task">Edit task</button>
+                    <button class="remove-task">Remove task</button>
+                </div>
+                <div class="list-item high-priority">
+                    <h4>Test task 02,<p class="due-date"> due: 12.12.1222</p></h4>
+                    <p>Short description.</p>
+                    <button class="edit-task">Edit task</button>
+                    <button class="remove-task">Remove task</button>
+                </div> -->
+            </div>
+        </section>
     </div>
-
-    <section class="content">
-        <header class="header">
-            <h1 class="site-h1">To-do List</h1>
-            <button class="new-task-btn">➕</button>
-        </header>
-        <div class="sidebar">
-            <div class="due-filter">
-                <h3>Due date</h3>
-                <ul class="due-filter-ul">
-                    <li class="selected">
-                        <p class="no-display">none</p>
-                        <p class="date-name">No filter</p>
-                    </li>
-                    <li>
-                        <p class="no-display">day</p>
-                        <p class="date-name">Today</p>
-                    </li>
-                    <li>
-                        <p class="no-display">week</p>
-                        <p class="date-name">Week</p>
-                    </li>
-                    <li>
-                        <p class="no-display">month</p>
-                        <p class="date-name">Month</p>
-                    </li>
-            </div>
-            <div class="task-lists">
-                <h3>Task lists</h3>
-                <ul class="task-list-ul">
-                    <li class="selected">
-                        <p class="no-display">none</p>
-                        <p class="no-filter">ALL TASKS</p>
-                    </li>          
-                </ul>
-            </div>
-            <div class="add-list">
-                <form class="add-list-form">
-                    <button type="submit">➕</button>
-                    <input type="text" class="add-list-input" placeholder="Add a list">
-                </form>
-            </div>
-        </div>
-        <div class="todo-list">
-            <!-- <div class="list-item low-priority">
-                <h4>Test task 01,<p class="due-date"> due: 12.12.1222</p></h4>
-                <p>test description 01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. At necessitatibus doloribus explicabo unde reiciendis sequi consectetur. Dolores, illum ab? Odio.</p>
-                <button class="edit-task">Edit task</button>
-                <button class="remove-task">Remove task</button>
-            </div>
-            <div class="list-item high-priority">
-                <h4>Test task 02,<p class="due-date"> due: 12.12.1222</p></h4>
-                <p>Short description.</p>
-                <button class="edit-task">Edit task</button>
-                <button class="remove-task">Remove task</button>
-            </div> -->
-        </div>
-    </section>
+    <!-- <a href="https://www.flaticon.com/free-icons/trash-can" title="trash can icons">Trash can icons created by IYAHICON - Flaticon</a> -->
 </body>
 </html>
 

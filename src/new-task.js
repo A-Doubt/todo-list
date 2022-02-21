@@ -42,16 +42,18 @@ function addNewTask(e) {
     const taskId = new Date().getTime();
     const description = document.querySelector('#description');
 
+    let dueDate = new Date(due.valueAsNumber);
 
     tasks.push({
         title: title.value,
-        due: new Date(due.valueAsNumber),
+        due: dueDate,
         priority: priority.value,
         listId: listId.value,
         taskId: taskId,
         description: description.value,
         completed: false,
     })
+
 
     title.value = '';
     due.value = '';

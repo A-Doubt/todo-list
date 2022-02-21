@@ -48,7 +48,7 @@ export function renderLists(e) {
         const removeButton = document.createElement('button');
         removeButton.classList.add('remove-btn');
         removeButton.addEventListener('click', removeList);
-        removeButton.textContent = 'remove';
+        removeButton.textContent = '';
 
         newListItem.append(listId, newListItemName, removeButton);
         

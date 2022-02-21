@@ -121,7 +121,7 @@ export function filterByDate(){
     todoTasks.forEach(task => {
         // get this tasks's due date
         const dueDate = Date.parse(task.childNodes[5].textContent); // date hidden in the DOM
-        
+
         switch (selectedDueFilter) {
             case 'none':
                 break;
@@ -138,7 +138,8 @@ export function filterByDate(){
             case 'week':
                 if (
                     new Date().getTime() + week < dueDate ||
-                    (new Date().getTime() > dueDate && new Date(dueDate).getDate() !== new Date().getDate())
+                    (new Date().getTime() > dueDate && new Date(dueDate).getDate() !== new Date().getDate()) ||
+                    isNaN(dueDate)
                 ){
                     task.classList.add('no-display');
                 }
@@ -147,7 +148,8 @@ export function filterByDate(){
             case 'month':
                 if (
                 new Date().getTime() + month < dueDate ||
-                (new Date().getTime() > dueDate && new Date(dueDate).getDate() !== new Date().getDate())
+                (new Date().getTime() > dueDate && new Date(dueDate).getDate() !== new Date().getDate()) ||
+                isNaN(dueDate)
                 ){
                     task.classList.add('no-display');
                 }
