@@ -1,11 +1,8 @@
-// import { lists } from "./task-lists";
 import { clearTasks, renderTasks } from "./todo-tasks";
 import { tasks } from "./localStorage";
 import { selectList, selectDate } from "./filters";
 import { lists } from "./localStorage";
-// import { filter } from "./filters";
-// import { filterByDate } from "./filters";
-// import { filterByList } from "./filters";
+import { removedListId } from "./task-lists";
 
 // functions to draw the form to add a new task and to remove the form
 document.querySelector('.new-task-btn').addEventListener('click', newTask);
@@ -13,8 +10,11 @@ function newTask() {
     document.querySelector('.content').classList.add('blur');
     document.querySelector('.add-task').classList.remove('invisible');
 }
+
+window.addEventListener('keydown', closeNewTask)
 document.querySelector('#close-add').addEventListener('click', closeNewTask);
-function closeNewTask() {
+function closeNewTask(e) {
+    if (e.keyCode != 27 && e.type != 'click') return;
     document.querySelector('.content').classList.remove('blur');
     document.querySelector('.add-task').classList.add('invisible');
 }

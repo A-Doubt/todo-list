@@ -1,8 +1,8 @@
 import { actuallyDeleted } from "./task-lists";
-// let selectedListId = null;
+
 let selectedListFilter = 'none';
 let selectedDueFilter = 'none';
-// listener to task lists
+
 document.querySelector('.task-list-ul').addEventListener('click', selectList);
 document.querySelector('.due-filter-ul').addEventListener('click', selectDate);
 
@@ -44,9 +44,9 @@ export function selectList(e) {
             e.target.parentNode.classList.add('selected');
 
             if (e.target.parentNode.parentNode.childNodes[1]) li.classList.remove('selected');
-
         })
     }
+
     // if this function is triggered from a different function, we want to preserve selection
     else {
         listLiElement.forEach(li => {
@@ -56,13 +56,13 @@ export function selectList(e) {
             }
         })
     }
+
     // if no list selected
     if (!selectedListFilter) document.querySelector('.no-filter').parentNode.classList.add('selected');
 
     filter();
 }
 
-// not finished
 export function selectDate(e) {
     // check if the function is triggered when click on a date
     const DateLiElement = document.querySelectorAll('.due-filter-ul>li');
@@ -159,8 +159,6 @@ export function filterByDate(){
 };
             
 export function filterByList() {
-    // selectedListFilter = document.querySelector('.task-list-ul>.selected').firstChild.textContent;
-
     selectedListFilter = document.querySelector('.task-list-ul>.selected').childNodes[0].textContent;
 
     console.log(`list filter: ${selectedListFilter}`);

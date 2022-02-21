@@ -1,29 +1,7 @@
 import { populateListChoice } from "./new-task";
-import { selectList  } from "./filters";
-import { selectDate } from "./filters";
+import { selectList, selectDate } from "./filters";
 import { clearTasks, renderTasks } from "./todo-tasks";
-import { tasks } from "./localStorage";
-import { lists } from "./localStorage";
-import { saveToStorage } from "./localStorage";
-
-// let lists = [
-//     {
-//         name: '111',
-//         id: 111111111111111
-//     },
-//     {
-//         name: '222',
-//         id: 222222222222222
-//     },
-//     {
-//         name: '333',
-//         id: 333333333333333
-//     },
-//     {
-//         name: '444',
-//         id: 444444444444444
-//     }
-// ]
+import { tasks, lists, saveToStorage } from "./localStorage";
 
 // function which renders all task lists
 export function renderLists(e) {
@@ -95,11 +73,14 @@ function removeList(e) {
     if (!confirm('Are you sure you want to remove the list and all tasks belonging to this list?')) return;
     actuallyDeleted = true;
 
+    removedListId = e.target.parentNode.firstChild.textContent;
+
     index = lists.findIndex(x => x.id == this.parentNode.firstChild.textContent);
     lists.splice(index, 1);
     // clear and render
     clearLists();
     renderLists();
+    
     // and select an active list
     selectList(e);
 
@@ -123,8 +104,6 @@ function clearLists() {
 
 // removes all tasks that were a part of a list that's being deleted and renders tasks again
 function removeMatchingTasks(e) {
-
-    console.log(`index: ${index}`);
     for(let i = tasks.length - 1; i >= 0; i--) {
 
         if(tasks[i].listId == removedListId) {
@@ -135,5 +114,4 @@ function removeMatchingTasks(e) {
     renderTasks();
 }
 
-// export { lists };
-export { actuallyDeleted };
+export { actuallyDeleted, removeMatchingTasks};

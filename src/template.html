@@ -7,36 +7,29 @@
 </head>
 <body class="preload">
 
-    <!-- <div class="remove-list invisible">
-        <button class="close-list-deletion-btn" style="font-size: 3rem;">❌</button>
-        <h2>Are you sure you want to remove this list and all tasks belonging to this list?</h2>
-        <button class="remove-list-confirm-btn">REMOVE LIST</button>
-    </div> -->
-
-
     <div>
-        <div class="add-task ">
+        <div class="add-task invisible">
             <form class="add-task-form">
                 <div class="form-header">
-                    <h2>add a new task</h2>
+                    <h2>Add a new task</h2>
                     <button type="button" class="close-form-btn" id="close-add">❌</button>
                 </div>
                 <label for="task-name">Task name:</label>
-                <input type="text" id="task-name" placeholder="task-name" required autocomplete="off">
+                <input type="text" id="task-name" placeholder="task-name . . ." required autocomplete="off">
                 <label for="due-date">Due date:</label>
-                <input type="date" id="due-date">
+                <input type="date" id="due-date"><br>
                 <label for="select">Priority</label>
                 <select name="priority" id="priority">
                     <option value="low-priority">Low</option>
-                    <option value="medium-priority">medium-</option>
+                    <option value="medium-priority">Medium</option>
                     <option value="high-priority">High</option>
                 </select>
                 <label for="list">Choose list</label>
                 <select name="list" id="list">
                 </select>
                 <label for="description">Description</label>
-                <textarea name="description" id="description" cols="25" rows="4" placeholder="description"></textarea>
-                <button type="submit" class="add-task-btn">ADD TASK</button>
+                <textarea name="description" id="description" cols="25" rows="4" placeholder="description . . ."></textarea>
+                <button type="submit" class="add-task-btn blue-btn">Add task</button>
             </form>
         </div>
         <section class="content">
@@ -83,23 +76,12 @@
                 </div>
             </div>
             <div class="todo-list">
-                <!-- <div class="list-item low-priority">
-                    <h4>Test task 01,<p class="due-date"> due: 12.12.1222</p></h4>
-                    <p>test description 01 Lorem ipsum dolor sit amet consectetur, adipisicing elit. At necessitatibus doloribus explicabo unde reiciendis sequi consectetur. Dolores, illum ab? Odio.</p>
-                    <button class="edit-task">Edit task</button>
-                    <button class="remove-task">Remove task</button>
-                </div>
-                <div class="list-item high-priority">
-                    <h4>Test task 02,<p class="due-date"> due: 12.12.1222</p></h4>
-                    <p>Short description.</p>
-                    <button class="edit-task">Edit task</button>
-                    <button class="remove-task">Remove task</button>
-                </div> -->
+
+
             </div>
         </section>
     </div>
-    <!-- <a href="https://www.flaticon.com/free-icons/trash-can" title="trash can icons">Trash can icons created by IYAHICON - Flaticon</a> -->
+
 </body>
 </html>
 
-<!-- <img src=<%=require("./assets/002.png").default%> alt=""/> -->
